@@ -3,7 +3,7 @@ from django.test import Client
 from django.urls import resolve
 from .views import index, bio_dict, mhs_name
 from django.http import HttpRequest
-from unittest import skip
+
 
 class Lab2AddonUnitTest(TestCase):
 
