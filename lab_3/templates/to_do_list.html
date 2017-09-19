@@ -23,8 +23,8 @@
                 </tr>
                 {% for diary_data in diary_dict %}
                     <tr>
-                        <td class="date">{{ diary_data.date }}</td>
-                        <td class="activity">{{ diary_data.activity }}</td>
+                        <th class="date">{{ diary_data.date }}</th>
+                        <th class="activity">{{ diary_data.activity }}</th>
                     </tr>
                 {% endfor %}
             </table>
@@ -34,17 +34,17 @@
                 {% csrf_token %}
                 <table>
                     <tr>
-                        <td>
+                        <th>
                             Tanggal
-                        </td>
+                        </th>
                         <td>
                             <input type="datetime-local" name="date" id="date" required="required"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <th>
                             Kegiatan
-                        </td>
+                        </th>
                         <td>
                             <input type="text" name="activity" id="activity" size="25"/>
                         </td>
