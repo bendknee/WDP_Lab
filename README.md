@@ -1,6 +1,6 @@
-[![pipeline status](https://gitlab.com/pardede/WDP_Lab2/badges/master/pipeline.svg)](https://gitlab.com/pardede/WDP_Lab2/commits/master)
+##Pipeline Status   :   [![pipeline status](https://gitlab.com/pardede/WDP_Lab3/badges/master/pipeline.svg)](https://gitlab.com/pardede/WDP_Lab3/commits/master)
 
-[![coverage report](https://gitlab.com/pardede/WDP_Lab2/badges/master/coverage.svg)](https://gitlab.com/pardede/WDP_Lab2/commits/master)
+##Coverage Report   :   [![coverage report](https://gitlab.com/pardede/WDP_Lab3/badges/master/coverage.svg)](https://gitlab.com/pardede/WDP_Lab3/commits/master)
 
 # Tutorials and Assignment Repository
 
