@@ -33,6 +33,11 @@ class Lab4UnitTest(TestCase):
         for item in about_me:
             self.assertIn(item,html_response)
 
+    def test_str_in_models(self):
+        test_string = 'Halo'
+        my_test = Message.objects.create(name="dummy",email='dummy@gmail.com',message='Halo')
+        self.assertEqual(my_test, test_string)
+
     def test_model_can_create_new_message(self):
         #Creating a new activity
         new_activity = Message.objects.create(name=mhs_name,email='test@gmail.com',message='This is a test')
