@@ -36,7 +36,7 @@ class Lab4UnitTest(TestCase):
     def test_str_in_models(self):
         test_string = 'Halo'
         my_test = Message.objects.create(name="dummy",email='dummy@gmail.com',message='Halo')
-        self.assertEqual(my_test, test_string)
+        self.assertEqual(str(my_test), test_string)
 
     def test_model_can_create_new_message(self):
         #Creating a new activity
