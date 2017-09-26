@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import index, add_message
+from .views import index, message_post
 
 
 urlpatterns = [

@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from lab_2.views import landing_page_content
+from django.http import HttpResponseRedirect
+from .forms import Message_Form
+from .models import Message
+
 
 # Create your views here.
 response = {'author': "Benny William Pardede"} #TODO Implement yourname
