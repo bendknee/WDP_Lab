@@ -2,8 +2,8 @@ from django.shortcuts import render
 from lab_2.views import landing_page_content
 
 # Create your views here.
-response = {'author': ""} #TODO Implement yourname
-about_me = ["I'm", "just", "a", "poor", "boy", "I", "need", "no", "fantasy"]
+response = {'author': "Benny William Pardede"} #TODO Implement yourname
+about_me = ["I", "just", "a", "poor", "boy", "I", "need", "no", "fantasy"]
 def index(request):
     response['content'] = landing_page_content
     html = 'lab_4/lab_4.html'
