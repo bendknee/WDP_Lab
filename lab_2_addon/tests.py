@@ -14,7 +14,7 @@ class Lab2AddonUnitTest(TestCase):
     def test_root_url_now_is_using_index_page_from_lab_2(self):
         response = Client().get('/')
         self.assertEqual(response.status_code, 301)
-        self.assertRedirects(response,'/lab-2/',301,200)
+        self.assertRedirects(response,'/lab-4/',301,200)
 
     def test_lab2_addon_using_index_func(self):
         found = resolve('/lab-2-addon/')
