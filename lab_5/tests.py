@@ -55,3 +55,8 @@ class Lab5UnitTest(TestCase):
         response= Client().get('/lab-5/')
         html_response = response.content.decode('utf8')
         self.assertNotIn(test, html_response)
+
+    def test_root_url_now_is_using_index_page_from_lab_5(self):
+        response = Client().get('/')
+        self.assertEqual(response.status_code, 301)
+        self.assertRedirects(response,'/lab-5/',301,200)

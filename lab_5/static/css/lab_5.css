@@ -83,9 +83,15 @@ padding-top: 10px;
 
 /* styling responsive max-width menandakan bahwa rule css ini hanya akan bekerja untuk layar dengan maksimal 768px, jika lebih dari 768px maka rule ini diabaikan */
 @media only screen and (max-width: 768px) {
-#input-list form {
-    width: 290px;
-}
+  #input-list form {
+      width: 290px;
+  }
+  .flex-item{
+  padding: 0 15px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 25%;
+  }
 }
 
 #input-list{
@@ -155,20 +161,31 @@ transition: 0.5s all;
   background: #fff;
 }
 .flex{
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: flex-start;
-align-items: flex-start;
-align-content: flex-start;
-margin-right: -15px;
-margin-left: -15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 .flex-item{
-padding: 0 15px;
-flex-grow: 0;
-flex-shrink: 0;
-flex-basis: 25%;
+  padding: 0 15px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 25%;
+}
+
+.to-do-list:hover {
+  -webkit-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 25px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate(0, -5px);
+  -moz-transform: translate(0, -5px);
+  -o-transform: translate(0, -5px);
+  transform: translate(0, -5px);
 }
 
 .to-do-list .to-do-list-title {
