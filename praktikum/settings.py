@@ -49,13 +49,9 @@ INSTALLED_APPS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MIDDLEWARE = [
-    MIDDLEWARE_CLASSES = (
-        # Simplified static file serving.
-        # https://warehouse.python.org/project/whitenoise/
-        'whitenoise.middleware.WhiteNoiseMiddleware')
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
