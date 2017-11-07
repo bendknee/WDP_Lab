@@ -14,12 +14,12 @@ localStorage.setItem("themes", JSON.stringify([
 
 localStorage.setItem("selectedTheme", JSON.stringify({"Indigo": {"bcgColor": "#3F51B5", "fontColor": "#FAFAFA"}}));
 
-$(document).ready(function theme(){
+$(document).ready(function () {
     $('.my-select').select2({
         data: JSON.parse(localStorage.getItem("themes"))
     });
 
-    $('.apply-button').on('click', function change_theme() {  // sesuaikan class button
+    $('.apply-button').on('click', function () {  // sesuaikan class button
     // ambil value dari elemen select .my-select
         theme = JSON.parse(localStorage.getItem('themes'))[$('.my-select').val()];
     // cocokan ID theme yang dipilih dengan daftar theme yang ada
