@@ -1,0 +1,27 @@
+{% extends "lab_6/layout/base.html" %}
+
+{% block content %}
+    <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    </head>
+    <!-- ChatBox Section -->
+    <section name="Chatbox">
+        <div class="wrapper">
+            <div class="chat-box">
+                <div class="chat-head">
+                    <h2>Chat</h2>
+                    <img src="https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png" id="collapse"
+                         title="Expand Arrow" width="16">
+                </div>
+                <div class="chat-body">
+                    <div class="msg-insert">
+                    </div>
+                    <div class="chat-text">
+                        <textarea placeholder="Press Enter"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
