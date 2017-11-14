@@ -34,22 +34,23 @@
                 }
                 else {
                     $.each(list, function(index, friend) {
-                        var text = '<a class="list-group-item clearfix">'+
-                            friend.fields.friend_name +
-                            ' (' + friend.fields.npm + ')' + '<span class="pull-right">'+
+                        var button = '<span class="pull-right">'+
                             '<button type="button" class="btn btn-xs btn-danger"'+
                             'onClick="deleteFriend('+friend.pk+')">'+
-                            '&times;'+
-                            '</button>'+
-                            '</span>' + '</a>';
+                            '&times;'+ '</button>'+
+                            '</span>';
+                        var text = '<a class="list-group-item clearfix">'+
+                            friend.fields.friend_name +
+                            ' (' + friend.fields.npm + ')' + button + '</a>';
                         $("#friend-list").append(text)
+
                     });
                 }
             }
         });
     });
 
-    const deleteFriend = function(id) {
+    var deleteFriend = function(id) {
         window.open('delete-friend/'+id+'/', '_self');
     }
 

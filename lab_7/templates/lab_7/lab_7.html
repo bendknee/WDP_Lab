@@ -7,43 +7,70 @@
                 <h2> Mahasiswa Fasilkom</h2>
                 <div class="list-group">
                     {% if mahasiswa_list %}
-                        {% for mahasiswa in mahasiswa_list %}
-                            <a class="list-group-item clearfix">
-                                {{ mahasiswa.nama }} ({{ mahasiswa.npm }})
-                                <span class="pull-right">
-                        <span class="btn btn-xs btn-default" onClick="addFriend('{{ mahasiswa.nama }}', '{{ mahasiswa.npm }}')">
-                            Tambah sebagai teman
+                    {% for mahasiswa in mahasiswa_list %}
+                    <a class="list-group-item clearfix">
+                        {{ mahasiswa.nama }} ({{ mahasiswa.npm }})
+                        <span class="pull-right">
+                            <span class="btn btn-xs btn-default" onClick="addFriend('{{ mahasiswa.nama }}', '{{ mahasiswa.npm }}', '{{ mahasiswa.alamat_mhs }}', '{{ mahasiswa.kota_lahir }}, {{ mahasiswa.tgl_lahir }}', '{{ mahasiswa.program.0.nm_org }} ({{ mahasiswa.program.0.nm_prg }})')">
+                                Tambah sebagai teman
+                            </span>
                         </span>
-                    </span>
-                            </a>
-                        {% endfor %}
+                    </a>
+                    {% endfor %}
                     {% else %}
-                        <div class="alert alert-danger text-center">
-                            <strong>Opps!</strong> Tidak ada mahasiswa
-                        </div>
+                    <div class="alert alert-danger text-center">
+                        <strong>Oops!</strong> Tidak ada mahasiswa
+                    </div>
+                    {% endif %}
+                    {% if mahasiswa_list.has_other_pages %}
+                    <ul class="pagination">
+                        {% if mahasiswa_list.has_previous %}
+                        <li><a href="{% url 'lab-7:index' %}">&laquo;</a></li>
+                        <li><a href="?page={{ mahasiswa_list.previous_page_number }}">&lsaquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&lsaquo;</span></li>
+                        {% endif %}
+                        {% for page in page_range %}
+                        {% if mahasiswa_list.number == page %}
+                        <li class="active"><span>{{ page }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if mahasiswa_list.has_next %}
+                        <li><a href="?page={{ mahasiswa_list.next_page_number }}">&rsaquo;</a></li>
+                        <li><a href="?page={{ mahasiswa_list.paginator.num_pages }}">&raquo;</a></li>
+                        {% else %}
+                        <li class="disabled"><span>&rsaquo;</span></li>
+                        {% endif %}
+                    </ul>
                     {% endif %}
                 </div>
+                {% if auth %}
+                <div id="token" hidden="true">{{ auth.access_token }}</div>
+                <div id="cid" hidden="true">{{ auth.client_id }}</div>
+                {% endif %}
             </div>
             <div class="col-lg-4">
                 <h2> Teman Saya </h2>
                 <div class="list-group" id="friend-list">
                     {% if friend_list %}
-                        {% for friend in friend_list %}
-                            <a class="list-group-item clearfix">
-                                {{ friend.friend_name }} ({{ friend.npm }})
-                            </a>
-                        {% endfor %}
+                    {% for friend in friend_list %}
+                    <a class="list-group-item clearfix">
+                        {{ friend.friend_name }} ({{ friend.npm }})
+                    </a>
+                    {% endfor %}
                     {% else %}
-                        <div class="alert alert-danger text-center">
-                            <strong>Opps!</strong> Tidak ada teman
-                        </div>
+                    <div class="alert alert-danger text-center">
+                        <strong>Oops!</strong> Tidak ada teman
+                    </div>
                     {% endif %}
                 </div>
                 <form id="add-friend" action="#">
                     {% csrf_token %}
-                    <label for="field_npm">npm</label>
+                    <label for="field_npm">NPM:</label>
                     <input id="field_npm" type="text" name="npm" class="form-control"/>
-                    <label for="field_name">name</label>
+                    <label for="field_name">Name:</label>
                     <input id="field_name" type="text" name="name" class="form-control"/>
                     <button type="submit">Tambah</button>
                 </form>
@@ -52,20 +79,18 @@
     </div>
 </section>
 {% endblock %}
-
 {% block javascript %}
 <script>
     var token = document.getElementById("token").innerHTML;
     var cid = document.getElementById("cid").innerHTML;
-
     var addFriend = function(nama, npm) {
         $.ajax({
             method: "POST",
-            url: "{% url 'lab-7:add-friend' %}",
+            url: '{% url "lab-7:add-friend" %}',
             data: { name: nama, npm: npm},
             success : function (friend) {
                 html = '<a class="list-group-item clearfix">' +
-                        nama + ' (' + npm +')</a>';
+                    nama + ' (' + npm +')</a>';
                 $("#friend-list").append(html)
             },
             error : function (error) {
@@ -74,21 +99,22 @@
         });
     };
 
-    $("#add-friend").on("submit", function () {
-        name = $("#field_name").val()
-        npm = $("#field_npm").val()
+    $("#add-friend").on("submit", function (event) {
+        var npm = $("#field_npm").val();
+        var corsProxy = 'https://cors-anywhere.herokuapp.com/';
+        var obj = new Object(); obj.access_token = token; obj.client_id = cid;
+        var param = $.param(obj);
         $.ajax({
             method: "GET",
             url: corsProxy+'https://api-dev.cs.ui.ac.id/siakngcs/mahasiswa/'+npm+'/?'+param,
             success: function(data) {
-                addFriend(name, npm)
+                addFriend(data.nama, data.npm)
             },
             error: function(error) {
                 console.log(error)
                 alert("\n\t\t\tNPM tidak valid:\n\n'Tidak ada mahasiswa dengan NPM tersebut'")
             }
         });
-
         event.preventDefault();
     });
 
@@ -105,11 +131,10 @@
             success: function (data) {
                 console.log(data)
                 if (data.is_taken) {
-                    alert("Mahasiswa dengan npm seperti ini sudah ada");
+                    alert("Mahasiswa dengan NPM tersebut sudah menjadi teman");
                 }
             }
         });
     });
 </script>
 {% endblock %}
-
