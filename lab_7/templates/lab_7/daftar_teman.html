@@ -1,0 +1,58 @@
+{% extends "lab_7/layout/base.html" %}
+
+{% block content %}
+    <section name="friend-list" class="friend-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    <h2>Fasilkom Friends</h2>
+                    <div id="friend-list" class="list-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascript %}
+<script>
+    $( document ).ready(function () {
+        // {# lengkapi pemanggilan ajax berikut untuk mengambil daftar teman yang ada di database #}
+        $.ajax({
+            method: "GET",
+            url: '{% url "lab-7:get-friend-list" %}',//#URL untuk mendapatkan list teman,
+            success: function (friend_list) {
+                console.log(friend_list)
+                var list = JSON.parse(friend_list);
+                // #tampilkan list teman ke halaman
+                // #hint : gunakan fungsi jquery append()
+                if(list.length==0) {
+                    var text = '<div class="alert alert-danger text-center">\
+                            <strong>Oops!</strong> Tidak ada teman\
+                            </div>';
+                    $("#friend-list").append(text)
+                }
+                else {
+                    $.each(list, function(index, friend) {
+                        var text = '<a class="list-group-item clearfix">'+
+                            friend.fields.friend_name +
+                            ' (' + friend.fields.npm + ')' + '<span class="pull-right">'+
+                            '<button type="button" class="btn btn-xs btn-danger"'+
+                            'onClick="deleteFriend('+friend.pk+')">'+
+                            '&times;'+
+                            '</button>'+
+                            '</span>' + '</a>';
+                        $("#friend-list").append(text)
+                    });
+                }
+            }
+        });
+    });
+
+    const deleteFriend = function(id) {
+        window.open('delete-friend/'+id+'/', '_self');
+    }
+
+</script>
+
+{% endblock %}
