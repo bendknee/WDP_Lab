@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="LAB 9">
+    <meta name="author" content="{{author}}">
+
+    <!-- bootstrap csss -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rata-tengah {
+            text-align: center;
+            margin : 20px;
+        }
+        .judul {
+            text-transform:uppercase;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+    </style>
+    <title>
+        {% block title %} Lab 9 By {{author}} {% endblock %}
+    </title>
+</head>
+<body>
+<header>
+    <h1 style="text-align:center">
+        <small><em> Change This With Your Custom Header </em></small>
+    </h1>
+    <!-- Your Header Here -->
+</header>
+<content>
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert" id="django-messages">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-right: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+        {% endfor %}
+
+        {% block content %}
+        <!-- Your Content Here -->
+        {% endblock %}
+    </div>
+</content>
+<footer>
+    <hr>
+    {% block footer %}
+
+    <h1 style="text-align:center">
+        <small><em> Change This With Your Custom Footer </em></small>
+    </h1>
+    <!-- Your Footer Here -->
+    {% endblock %}
+</footer>
+
+<!-- Jquery n Bootstrap Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="LAB 8">
+    <meta name="author" content="{{author}}">
+    <!-- bootstrap css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+
+    <title>
+        {% block title %} Lab 8 {% endblock %}
+    </title>
+</head>
+<body>
+<div id="fb-root"></div>
+<script src="{% static 'js/lab_8.js' %}"></script>
+
+<content>
+    {% block content %}
+    <!-- content goes here -->
+    {% endblock %}
+</content>
+
+<!-- Jquery n Bootstrap Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Custom alert script-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
