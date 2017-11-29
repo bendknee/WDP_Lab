@@ -1,0 +1,38 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h2> Daftar Optical : {{ opticals | length}} </h2>
+        <a href="{% url 'lab-9:clear_session_item' 'opticals' %}" class="btn btn-danger" onclick="return confirm('Reset data?')">
+            Reset Favorite Optical
+        </a>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+            <th> No</th>
+            <th> Nama</th>
+            <th> Harga</th>
+            <th> Jumlah</th>
+            <th> Aksi </th>
+
+
+            </thead>
+            <tbody>
+            {% for optical in opticals %}
+            <tr>
+                <td> {{ forloop.counter }}</td>
+                <td> {{ optical.name }}</td>
+                <td> {{ optical.price }}</td>
+                <td> {{ optical.quantity }}</td>
+                <td>
+                    {% if not optical.id in fav_opticals %}
+                    <a href="{% url 'lab-9:add_session_item' 'opticals' optical.id %}" class="btn btn-primary"> Favoritkan </a>
+                    {% else %}
+                    <a href="{%url 'lab-9:del_session_item' 'opticals' optical.id %}" class="btn btn-primary"> Hapus dari favorit </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

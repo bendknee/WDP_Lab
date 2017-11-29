@@ -4,7 +4,6 @@ from django.urls import reverse
 
 from .csui_helper import get_access_token, verify_user
 
-
 # authentication
 def auth_login(request):
     print("#==> auth_login ")

@@ -28,11 +28,29 @@
 </head>
 <body>
 <header>
-    <h1 style="text-align:center">
-        <small><em> Change This With Your Custom Header </em></small>
-    </h1>
     <!-- Your Header Here -->
+    <!-- templates/lab_5/partials/header.html -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'lab-9:index' %}">Home</a>
+            </div>
+            {% if login %}
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav nav-right pull-right">
+                    <li><a href="{% url 'lab-9:auth_logout' %}" onclick="return confirm('Keluar?')">Logout</a></li>
+                </ul>
+            </div>
+            {% endif %}
+    </nav>
 </header>
+
 <content>
     <div class="container">
         {% for message in messages %}
@@ -54,7 +72,7 @@
     {% block footer %}
 
     <h1 style="text-align:center">
-        <small><em> Change This With Your Custom Footer </em></small>
+        <small><em> Pardede & Co. </em></small>
     </h1>
     <!-- Your Footer Here -->
     {% endblock %}

@@ -14,8 +14,6 @@
         <p> Role : {{ role }} </p>
     </div>
     <div class="panel-footer">
-        <a href="{% url 'lab-9:auth_logout' %}" class="btn btn-danger pull-right" onclick="return confirm('Keluar?')">
-            Logout </a>
         <a href="{% url 'lab-9:cookie_login' %}" class="btn btn-info"> Masuk Halaman Cookies </a>
     </div>
 </div>
@@ -31,7 +29,7 @@
             <a href="#soundcard" aria-controls="settings" role="tab" data-toggle="tab"> Soundcard </a>
         </li>
         <li role="presentation">
-            <a href="#" aria-controls="settings" role="tab" data-toggle="tab"> Optical </a>
+            <a href="#opticals" aria-controls="settings" role="tab" data-toggle="tab"> Optical </a>
         </li>
     </ul>
 
@@ -42,9 +40,12 @@
         </div>
         <div role="tabpanel" class="tab-pane fade" id="soundcard">
             <!-- Apply the same here -->
+            {% include 'lab_9/tables/soundcards.html' %}
+
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="optical">
+        <div role="tabpanel" class="tab-pane fade" id="opticals">
             <!-- Apply the same here -->
+            {% include 'lab_9/tables/opticals.html' %}
         </div>
     </div>
 </div>
