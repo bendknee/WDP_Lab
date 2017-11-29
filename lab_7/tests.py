@@ -19,11 +19,6 @@ class Lab6UnitTest(TestCase):
         found = resolve('/lab-7/')
         self.assertEqual(found.func, index)
 
-    def test_root_url_now_is_using_index_page_from_lab_7(self):
-        response = Client().get('/')
-        self.assertEqual(response.status_code, 301)
-        self.assertRedirects(response, '/lab-7/', 301, 200)
-
     def test_friend_list_url_is_exist(self):
         response = Client().get('/lab-7/friend-list/')
         self.assertEqual(response.status_code, 200)
@@ -31,6 +26,11 @@ class Lab6UnitTest(TestCase):
     def test_get_friend_list_data_url_is_exist(self):
         response = Client().get('/lab-7/get-friend-list/')
         self.assertEqual(response.status_code, 200)
+
+    def test_root_url_now_is_using_index_page_from_lab_9(self):
+        response = Client().get('/')
+        self.assertEqual(response.status_code, 301)
+        self.assertRedirects(response, '/lab-9/', 301, 200) # INIIIII
 
     def test_auth_param_dict(self):
         csui_helper = CSUIhelper()

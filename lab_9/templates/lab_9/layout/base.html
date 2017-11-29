@@ -35,19 +35,17 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'lab-9:index' %}">Home</a>
+                <a href="{% url 'lab-9:index'%}" class="navbar-left"><img src="{% static 'logo.png' %}"></a>
             </div>
             {% if login %}
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav nav-right pull-right">
-                    <li><a href="{% url 'lab-9:auth_logout' %}" onclick="return confirm('Keluar?')">Logout</a></li>
+                    <li><a href="{% url 'lab-9:auth_logout' %}" class="btn btn-danger" style="color: white" onclick="return confirm('Keluar?')">Logout</a></li>
                 </ul>
             </div>
             {% endif %}
+        </div>
     </nav>
 </header>
 

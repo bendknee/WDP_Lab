@@ -23,6 +23,7 @@ def index(request):
     if 'user_login' in request.session:
         return HttpResponseRedirect(reverse('lab-9:profile'))
     else:
+        response['login'] = False
         html = 'lab_9/session/login.html'
         return render(request, html, response)
 
@@ -32,6 +33,7 @@ def set_data_for_session(res, request):
     response['access_token'] = request.session['access_token']
     response['kode_identitas'] = request.session['kode_identitas']
     response['role'] = request.session['role']
+    response['login'] = True
     response['drones'] = get_drones().json()
     response['soundcards'] = get_soundcards().json()
     response['opticals'] = get_opticals().json()
