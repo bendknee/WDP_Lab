@@ -18,8 +18,7 @@ def get_access_token(username, password):
 
         return response.json()["access_token"]
     except Exception as e:
-        return None
-        # raise Exception("username atau password sso salah, input : [{}, {}]".format(username, password,))
+        raise Exception("username atau password sso salah, input : [{}, {}]".format(username, password))
 
 
 def get_client_id():
@@ -34,7 +33,7 @@ def verify_user(access_token):
     print("response => ", response.json())
     return response.json()
 
-
+''' 
 def get_data_user(access_token, id):
     print("#get data user => ", id)
     parameters = {"access_token": access_token, "client_id": get_client_id()}
@@ -42,3 +41,4 @@ def get_data_user(access_token, id):
     print("response => ", response.text)
     print("response => ", response.json())
     return response.json()
+'''
