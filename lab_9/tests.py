@@ -171,9 +171,9 @@ class Lab9UnitTest(TestCase):
         # ===================================================================================================================
 
         # csui_helper.py
-        def test_invalid_sso_raise_exception(self):
-            username = "salah"
-            password = "sso"
-            with self.assertRaises(Exception) as context:
-                get_access_token(username, password)
-            self.assertIn("salah", str(context.exception))
+    def test_invalid_sso_raise_exception(self):
+        username = "salah"
+        password = "sso"
+        with self.assertRaises(Exception) as context:
+            get_access_token(username, password)
+        self.assertIn("salah", str(context.exception))
