@@ -1,0 +1,73 @@
+{% extends "lab_10/layout/base.html" %}
+
+{% block content %}
+<div class="row">
+    <br>
+    <div style="text-align: center">
+        <h1 style="margin-bottom: 20px; margin-top: -20px">{{ movie.title }} ({{ movie.year }})</h1>
+        <img src={{ movie.poster }} style="margin-bottom: 20px">
+    </div>
+    <div style="font-family: 'Century Gothic'">
+        <table class="table table-striped">
+            <tr>
+                <th>Released:</th>
+                <td> {{ movie.released }}</td>
+            </tr>
+            <tr>
+                <th>Genre:</th>
+                <td> {{ movie.genre }}</td>
+            </tr>
+            <tr>
+                <th>Runtime:</th>
+                <td> {{ movie.runtime }}</td>
+            </tr>
+            <tr>
+                <th>Director:</th>
+                <td> {{ movie.director }}</td>
+            </tr>
+            <tr>
+                <th>Actors:</th>
+                <td> {{ movie.actors }}</td>
+            </tr>
+            <tr>
+                <th>Language:</th>
+                <td> {{ movie.language }}</td>
+            </tr>
+            <tr>
+                <th>Plot:</th>
+                <td>{{ movie.plot }}</td>
+            </tr>
+        </table>
+        {% for x in movie.ratings %}
+        {% if x.Source == "Internet Movie Database" %}
+        <h4>
+            <img src="https://vignette.wikia.nocookie.net/the-leftovers/images/7/7f/IMDB-icon.png/revision/latest?cb=20140627045053"
+                 width="80px" height="40px">{{ x.Value }}
+        </h4>
+
+        {% elif x.Source == "Metacritic" %}
+        <h4>
+            <img src="http://www.headslinger.com/feed_img/1000565.jpg"
+                 width="80px" height="80px">{{ x.Value }}
+        </h4>
+        {% elif x.Source == "Rotten Tomatoes" %}
+        <h4>
+            <img src="https://staticv2-4.rottentomatoes.com/static/images/icons/favicon.ico"
+                 width="80px" height="80px">{{ x.Value }}
+        </h4>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <hr>
+
+    <br>
+    <div class="box">
+        {% if added %}
+        <button class="btn btn-success"> Added to Watch Later</button>
+        {% else %}
+        <a href="{% url 'lab-10:add_watch_later' id %}" class="btn btn-warning"> Add to Watch Later </a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

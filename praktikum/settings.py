@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'lab_5',
     'lab_6',
     'lab_7',
-    'lab_9'
+    'lab_9',
+    'lab_10'
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

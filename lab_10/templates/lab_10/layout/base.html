@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="LAB 10">
+    <meta name="author" content="{{author}}">
+
+    <!-- bootstrap css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JQuery dataTables CSS -->
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <style>
+        .rata-tengah {
+            text-align: center;
+            margin : 20px;
+        }
+        .judul {
+            text-transform:uppercase;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+        html, h1, h2, h3, h4, h5, p {
+            font-family: "Century Gothic";
+        }
+    </style>
+    <title>
+        {% block title %} Lab 10 By {{author}} {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        <!-- Your Header Here -->
+        <!-- templates/lab_5/partials/header.html -->
+        <nav class="navbar navbar-inverse navbar-static-top" style="background: black">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    <a href="{% url 'lab-10:index'%}" class="navbar-left"><img width="210px" height="50px" src="{% static 'logo.jpg' %}"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav nav-right pull-right">
+                        <li><a href="{% url 'lab-10:movie_list' %}">Movie List</a></li>
+                        <li><a href="{% url 'lab-10:list_watch_later' %}">Watch Later</a></li>
+                        {% if login %}
+                        <li><a href="{% url 'lab-10:auth_logout' %}" class="btn btn-danger" style="color: white" onclick="return confirm('Keluar?')">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <content>
+        <div class="container">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert" id="django-messages">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-right: 15px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+            {% endfor %}
+
+            {% block content %}
+            <!-- Your Content Here -->
+            {% endblock %}
+        </div>
+    </content>
+    <footer>
+        <hr>
+        {% block footer %}
+
+        <h1 style="text-align:center">
+            <small><em> Pardede & Co. </em></small>
+        </h1>
+        <!-- Your Footer Here -->
+        {% endblock %}
+    </footer>
+
+    <!-- Jquery n Bootstrap Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="application/javascript"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- JQuery dataTables Script -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+</body>
+</html>
