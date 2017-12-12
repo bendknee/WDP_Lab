@@ -1,10 +1,9 @@
 from django.test import TestCase
 from django.test import Client
-from django.urls import resolve
 
 import environ
 
-from .csui_helper import get_data_user
+from lab_10.csui_helper import get_access_token, get_data_user
 
 root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(DEBUG=(bool, False), )
@@ -153,14 +152,22 @@ class Lab10UnitTest(TestCase):
         response = Client().get('/lab-10/api/movie/miami vice/-/')
         self.assertEqual(response.status_code, 200)
         # not found
-        response = Client().get('/lab-10/api/movie/tipsitabiditupabi/-/')
+        response = Client().get('/lab-10/api/movie/zabolaza/-/')
         self.assertEqual(response.status_code, 200)
-        response = Client().get('/lab-10/api/movie/tipsipssipkipfi/2008/')
+        response = Client().get('/lab-10/api/movie/iron man/2008/')
         self.assertEqual(response.status_code, 200)
+
+    # csui_helper.py
+    def test_invalid_sso_raise_exception(self):
+        username = "salah"
+        password = "sso"
+        with self.assertRaises(Exception) as context:
+            get_access_token(username, password)
+        self.assertIn("salah", str(context.exception))
 
     def test_get_data_user(self):
         access_token = '14045'
-        id = 'pararardede'
+        id = 'EEDPDRA'
         data_user = get_data_user(access_token, id)
         self.assertIn("detail", data_user)
         self.assertEqual(data_user["detail"], "Authentication credentials were not provided.")
