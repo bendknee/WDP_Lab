@@ -17,9 +17,9 @@ class Lab10UnitTest(TestCase):
         self.password = env("SSO_PASSWORD")
 
     def test_login_failed(self):
-        response = self.client.post('/lab-9/custom_auth/login/', {'username': "siapa", 'password': "saya"})
+        response = self.client.post('/lab-10/custom_auth/login/', {'username': "siapa", 'password': "saya"})
         self.assertEqual(response.status_code, 302)
-        html_response = self.client.get('/lab-9/').content.decode('utf-8')
+        html_response = self.client.get('/lab-10/').content.decode('utf-8')
         self.assertIn("Username atau password salah", html_response)
 
     def test_lab_10_url_is_exist(self):
@@ -54,7 +54,7 @@ class Lab10UnitTest(TestCase):
         # not logged in
         response = self.client.get('/lab-10/movie/list/')
         self.assertEqual(response.status_code, 200)
-        # self.assertFalse(response.context['login'])
+        self.assertFalse(response.context['login'])
 
         # logged in
         response = self.client.post('/lab-10/custom_auth/login/',
@@ -62,7 +62,7 @@ class Lab10UnitTest(TestCase):
         self.assertEqual(response.status_code, 302)
         response = self.client.get('/lab-10/movie/list/')
         self.assertEqual(response.status_code, 200)
-        # self.assertTrue(response.context['login'])
+        self.assertTrue(response.context['login'])
         response = self.client.get('/lab-10/movie/list/', {'judul': 'Guardians of Galaxy', 'tahun': '2016'})
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/lab-10/movie/list/', {'judul': 'iron man', 'tahun': '2008'})
@@ -72,7 +72,7 @@ class Lab10UnitTest(TestCase):
         # not logged in
         response = self.client.get('/lab-10/movie/detail/tt3896198/')
         self.assertEqual(response.status_code, 200)
-        # self.assertFalse(response.context['login'])
+        self.assertFalse(response.context['login'])
 
         # logged in
         response = self.client.post('/lab-10/custom_auth/login/',
@@ -82,7 +82,7 @@ class Lab10UnitTest(TestCase):
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/lab-10/movie/detail/tt3896198/')
         self.assertEqual(response.status_code, 200)
-        # self.assertTrue(response.context['login'])
+        self.assertTrue(response.context['login'])
 
     def test_add_movie_to_watch_later(self):
         # not logged in
@@ -122,7 +122,7 @@ class Lab10UnitTest(TestCase):
         self.assertEqual(response.status_code, 302)
         response = self.client.get('/lab-10/movie/watch_later/')
         self.assertEqual(response.status_code, 200)
-        # self.assertFalse(response.context['login'])
+        self.assertFalse(response.context['login'])
 
         # logged in
         response = self.client.post('/lab-10/custom_auth/login/',
@@ -136,7 +136,7 @@ class Lab10UnitTest(TestCase):
         self.assertEqual(response.status_code, 302)
         response = self.client.get('/lab-10/movie/watch_later/')
         self.assertEqual(response.status_code, 200)
-        # self.assertTrue(response.context['login'])
+        self.assertTrue(response.context['login'])
 
     def test_api_search_movie(self):
         # init search

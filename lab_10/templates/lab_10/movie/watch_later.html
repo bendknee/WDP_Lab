@@ -1,16 +1,16 @@
 {% extends "lab_10/layout/base.html" %}
 
 {% block content %}
-    <div class="card-group" style="margin-left: 37%; text-align: center">
+    <div class="card-group" style="margin-left: 24%; text-align: center">
         {% for movie in watch_later_movies %}
-            <div class="card" style="max-width: 30rem">
-                <h1 class="card-header" style="margin-bottom: 5%">{{ movie.title }}</h1>
+            <div class="card" style="max-width: 60rem">
+                <h1 class="card-header" style="margin-bottom: 5%">{{ movie.title }} ({{ movie.year }})</h1>
                 <div class="card-block" style="margin-bottom: 13%">
                     <img src= "{{ movie.poster }}" style="text-align: center">
                     <hr/>
-                    <p class="card-text"><b>Actors:</b> {{ movie.actors }}</p>
-                    <p class="card-text"><b>Genre:</b> {{ movie.genre }}</p>
-                    <p class="card-text"><b>Plot:</b> {{ movie.plot }}</p>
+                    <h4 class="card-text"><b>Actors:</b> {{ movie.actors }}</h4>
+                    <h4 class="card-text"><b>Genre:</b> {{ movie.genre }}</h4>
+                    <h4 class="card-text"><b>Plot:</b> {{ movie.plot }}</h4>
                 </div>
             </div>
         {% endfor %}
