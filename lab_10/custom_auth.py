@@ -15,8 +15,8 @@ def auth_login(request):
         password = request.POST.get('password')
 
         # call csui_helper
-        access_token = get_access_token(username, password)
-        if access_token is not None:
+        try:
+            access_token = get_access_token(username, password)
             ver_user = verify_user(access_token)
             kode_identitas = ver_user['identity_number']
             role = ver_user['role']
@@ -28,7 +28,7 @@ def auth_login(request):
             request.session['role'] = role
             messages.success(request, "Anda berhasil login")
             response['logged_in'] = True
-        else:
+        except Exception as e:
             messages.error(request, "Username atau password salah")
     return HttpResponseRedirect(reverse('lab-10:index'))
 
